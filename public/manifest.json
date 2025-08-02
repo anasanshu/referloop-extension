@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "ReferLoop",
-  "description": "Easily send and get job referrals.",
+  "description": "Easily send and get job referrals for employees",
   "version": "1.0.0",
   "icons": {
     "16": "assets/logo16.png",
