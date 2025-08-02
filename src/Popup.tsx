@@ -1,5 +1,5 @@
-// src/popup/Popup.tsx
 import React, { useState } from 'react';
+import './Popup.css';
 
 const Popup = () => {
   const [name, setName] = useState('');
@@ -17,7 +17,7 @@ const Popup = () => {
   };
 
   return (
-    <div style={{ padding: '10px', width: '300px' }}>
+    <div className="popup-container">
       <h3>Job Referral Form</h3>
       <form onSubmit={handleSubmit}>
         <input
