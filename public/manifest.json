@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "ReferLoop",
+  "description": "Easily send and get job referrals.",
+  "version": "1.0.0",
+  "icons": {
+    "16": "assets/logo16.png",
+    "48": "assets/logo48.png",
+    "128": "assets/logo128.png"
+  },
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "assets/logo16.png",
+      "48": "assets/logo48.png",
+      "128": "assets/logo128.png"
+    }
+  },
+  "permissions": ["storage", "tabs", "activeTab", "scripting"],
+  "host_permissions": ["https://*/*"],
+  "background": {
+    "service_worker": "src/background/index.ts",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.linkedin.com/*", "https://www.naukri.com/*"],
+      "js": ["src/content/index.js"]
+    }
+  ]
+}
