@@ -8,6 +8,7 @@
     "48": "assets/logo48.png",
     "128": "assets/logo128.png"
   },
+
   "action": {
     "default_popup": "index.html",
     "default_icon": {
