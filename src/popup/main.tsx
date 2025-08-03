@@ -4,6 +4,7 @@ import { HashRouter, Routes, Route } from 'react-router-dom';
 import App from './App';
 import RequestReferral from './RequestReferral';
 import ReferralDetails from './ReferralDetails';
+import './RequestReferral.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
