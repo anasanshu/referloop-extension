@@ -3,9 +3,13 @@ import { useNavigate } from "react-router-dom";
 
 interface Referral {
     id: string;
-    todo: string;
-    completed: string;
-    userId: string;
+    fromUserId: string;
+    toUserId: string;
+    jobRole: string;
+    status: string;
+    jobId: string;
+    jobLink: string;
+    resumeLink: string;
     // status: string;
 }
 
@@ -20,14 +24,15 @@ export default function App() {
             try {
                 const response = await fetch(
                     // "https://referral-loop-production.up.railway.app/referrals/inbox?userId=user2"
-                    "https://dummyjson.com/todos?limit=3&skip=10"
+                    // "https://dummyjson.com/todos?limit=10&skip=10"
+                    "https://referral-loop-production.up.railway.app/referrals/all"
                 );
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
                 const data = await response.json();
                 // Assuming API returns an array of referrals
-                setReferrals(data["todos"]);
+                setReferrals(data);
             } catch (err: any) {
                 // setError(err.message);
             } finally {
@@ -116,8 +121,7 @@ export default function App() {
                             onMouseOut={(e) => (e.currentTarget.style.color = "#90caf9")}
                             onClick={() => handleOpenDetails(r.id)}
                         >
-                            {r.todo}
-                            {/*{r.name} – {r.jd?.slice(0, 15) || "No JD"}...*/}
+                            {r.fromUserId} – {r.jobRole} - {r.jobLink?.slice(0, 50) || "No JD"}...
                         </li>
                     ))}
                 </ul>
