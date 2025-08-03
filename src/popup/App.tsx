@@ -1,18 +1,42 @@
-import { useState } from "react";
+import {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 
 interface Referral {
     id: string;
-    name: string;
-    jd: string;
-    resume: string;
+    todo: string;
+    completed: string;
+    userId: string;
+    // status: string;
 }
 
 export default function App() {
     const navigate = useNavigate();
-    const [referrals] = useState<Referral[]>(
-        JSON.parse(localStorage.getItem("referrals") || "[]")
-    );
+    const [referrals, setReferrals] = useState<Referral[]>([]);
+    // const [loading, setLoading] = useState(true);
+    // const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        async function fetchReferrals() {
+            try {
+                const response = await fetch(
+                    // "https://referral-loop-production.up.railway.app/referrals/inbox?userId=user2"
+                    "https://dummyjson.com/todos?limit=3&skip=10"
+                );
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const data = await response.json();
+                // Assuming API returns an array of referrals
+                setReferrals(data["todos"]);
+            } catch (err: any) {
+                // setError(err.message);
+            } finally {
+                // setLoading(false);
+            }
+        }
+
+        fetchReferrals();
+    }, []);
 
     const handleNavigateRequest = () => {
         navigate("/request");
@@ -21,6 +45,14 @@ export default function App() {
     const handleOpenDetails = (id: string) => {
         navigate(`/details/${id}`);
     };
+
+    // if (loading) {
+    //     return <div style={{ padding: "20px", width: "300px" }}>Loading referrals...</div>;
+    // }
+    //
+    // if (error) {
+    //     return <div style={{ padding: "20px", width: "300px" }}>Error: {error}</div>;
+    // }
 
     return (
         <div
@@ -84,7 +116,8 @@ export default function App() {
                             onMouseOut={(e) => (e.currentTarget.style.color = "#90caf9")}
                             onClick={() => handleOpenDetails(r.id)}
                         >
-                            {r.name}
+                            {r.todo}
+                            {/*{r.name} – {r.jd?.slice(0, 15) || "No JD"}...*/}
                         </li>
                     ))}
                 </ul>

@@ -8,6 +8,7 @@ interface Referral {
     name: string;
     jd: string;
     resume: string;
+    status: string;
 }
 
 export default function ReferralDetails() {
