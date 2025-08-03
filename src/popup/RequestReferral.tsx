@@ -18,7 +18,12 @@ const Popup = () => {
 
     return (
         <div className="popup-container">
-            <h3>Job Referral Form</h3>
+            <div>
+                <button onClick={() => window.history.back()} style={{ }}>
+                    ← Back
+                </button>
+                <h3>Job Referral Form</h3>
+            </div>
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
