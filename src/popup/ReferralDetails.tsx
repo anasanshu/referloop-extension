@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import './RequestReferral.css';
+
 
 interface Referral {
     id: string;
@@ -19,7 +21,7 @@ export default function ReferralDetails() {
         setReferral(found || null);
     }, [id]);
 
-    if (!referral) return <div style={{ padding: "20px" }}>Referral not found.</div>;
+    if (!referral) return <div className="popup-container">Referral not found.</div>;
 
     const handleRefer = () => {
         alert(`Candidate ${referral.name} referred!`);
@@ -27,10 +29,10 @@ export default function ReferralDetails() {
     };
 
     return (
-        <div style={{ padding: "20px", width: "300px" }}>
+        <div className="popup-container">
             <h3>{referral.name}</h3>
             <p><b>Job Description:</b> {referral.jd}</p>
-            <p><b>Resume:</b> <a href={referral.resume} target="_blank">View</a></p>
+            <p><b>Resume:</b> <a href={referral.resume} target="_blank" rel="noopener noreferrer">View</a></p>
             <button onClick={handleRefer}>Refer Candidate</button>
         </div>
     );
