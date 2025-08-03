@@ -1,55 +1,49 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import './RequestReferral.css';
 
-export default function RequestReferral() {
-    const navigate = useNavigate();
-    const [name, setName] = useState("");
-    const [jd, setJd] = useState("");
-    const [resume, setResume] = useState("");
+const Popup = () => {
+    const [name, setName] = useState('');
+    const [jobDesc, setJobDesc] = useState('');
+    const [resumeLink, setResumeLink] = useState('');
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-
-        const newReferral = {
-            id: Date.now().toString(),
+        console.log('Submitted Data:', {
             name,
-            jd,
-            resume
-        };
-
-        const current = JSON.parse(localStorage.getItem("referrals") || "[]");
-        const updated = [...current, newReferral];
-        localStorage.setItem("referrals", JSON.stringify(updated));
-
-        // In real scenario: send POST to backend
-
-        navigate("/");
+            jobDesc,
+            resumeLink
+        });
+        alert('Form submitted!');
     };
 
     return (
-        <div style={{ padding: "20px", width: "300px" }}>
-            <h3>Request Referral</h3>
+        <div className="popup-container">
+            <h3>Job Referral Form</h3>
             <form onSubmit={handleSubmit}>
                 <input
-                    placeholder="Candidate Name"
+                    type="text"
+                    placeholder="Your Name"
                     value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    style={{ display: "block", marginBottom: "10px", width: "100%" }}
-                />
+                    onChange={e => setName(e.target.value)}
+                    required
+                /><br /><br />
                 <textarea
                     placeholder="Job Description"
-                    value={jd}
-                    onChange={(e) => setJd(e.target.value)}
-                    style={{ display: "block", marginBottom: "10px", width: "100%" }}
-                />
+                    value={jobDesc}
+                    onChange={e => setJobDesc(e.target.value)}
+                    required
+                /><br /><br />
                 <input
+                    type="url"
                     placeholder="Resume Link"
-                    value={resume}
-                    onChange={(e) => setResume(e.target.value)}
-                    style={{ display: "block", marginBottom: "10px", width: "100%" }}
-                />
-                <button type="submit">Submit Request</button>
+                    value={resumeLink}
+                    onChange={e => setResumeLink(e.target.value)}
+                    required
+                /><br /><br />
+                <button type="submit">Submit</button>
             </form>
         </div>
     );
-}
+};
+
+export default Popup;
