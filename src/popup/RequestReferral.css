@@ -1,10 +1,11 @@
+
 .popup-container {
   padding: 16px;
-  width: 300px;
+  width: 340px;
   font-family: 'Segoe UI', sans-serif;
-  background-color: #1e1e2f; /* Dark background */
+  background-color: #2f3a9e; /* Dark background */
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+ 
   color: #f0f0f0; /* Light text */
 }
 
