@@ -62,13 +62,13 @@ export default function App() {
     return (
         <div
             style={{
-                padding: "20px",
+                padding: "16px",
                 width: "340px",
                 backgroundColor: "#121212",
                 borderRadius: "12px",
                 color: "#e0e0e0",
                 fontFamily: "'Segoe UI', sans-serif",
-                boxShadow: "0 4px 16px rgba(0, 0, 0, 0.5)",
+                
             }}
         >
             <h3 style={{ marginTop: 0, fontSize: "1.6rem", color: "#ffffff", marginBottom: "12px" }}>
